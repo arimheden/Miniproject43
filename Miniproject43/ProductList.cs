@@ -5,8 +5,13 @@ using System.Text.RegularExpressions;
 
 namespace Miniproject43
 {
+    /* 
+     * Helper class for product list management
+     * 
+     */
     public class productListTools
     {
+        // Request user input for product name
         public String productInput()
         {
             Console.Write("Product: ");
@@ -15,6 +20,16 @@ namespace Miniproject43
             return userInput;
         }
 
+        // Request user input for product search
+        public String searchInput()
+        {
+            Console.Write("Search for: ");
+            string userInput = Console.ReadLine();
+            userInput = userInput.Trim().ToUpper();
+            return userInput;
+        }
+
+        // Validate user input for product name
         public bool validateInput(string inputToValidate)
         {
             if (String.IsNullOrEmpty(inputToValidate))
@@ -63,14 +78,17 @@ namespace Miniproject43
             return true;
         }
 
+        // Display menu and wait for key press
         public string productListMenu()
         {
+            Console.WriteLine();
             Console.WriteLine("1. Add Product");
             Console.WriteLine("2. View Products");
             Console.WriteLine("3. Search Product");
             Console.WriteLine("4. Delete Product");
             Console.WriteLine("5. Exit");
             Console.WriteLine();
+
             ConsoleKeyInfo keypressed;
             string numKey;
             do

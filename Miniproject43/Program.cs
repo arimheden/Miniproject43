@@ -1,5 +1,7 @@
 ﻿namespace Miniproject43.ProductList;
 using ProductList;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Program
 {
@@ -59,7 +61,8 @@ class Program
                         }
                     }
                     break;
-
+                
+                // Perform product sort and display
                 case "2":
                     Console.WriteLine();
                     Console.WriteLine("Sorted product list:");
@@ -71,14 +74,31 @@ class Program
                     }
                     break;
 
+                // Perform product search
                 case "3":
                     Console.WriteLine("Searching products");
+
+                    // Request user input
+                    string searchString = prodList.searchInput();
+
+                    Console.WriteLine();
+                    Console.WriteLine("Matching products...");
+                    Console.WriteLine();
+
+                    products.ForEach(delegate (string thisProduct)
+                    {
+                        if (thisProduct.Contains(searchString)) {
+                            Console.WriteLine(thisProduct);
+                        }
+                    });
                     break;
 
+                // Delete product from list
                 case "4":
                     Console.WriteLine("Deleting products");
                     break;
 
+                // Exit program
                 case "5":
                     Environment.Exit(0);
                     break;
