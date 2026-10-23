@@ -50,7 +50,9 @@ class Program
                         // Check for duplicate
                         if (products.Contains(prodName))
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("The product already exists.");
+                            Console.ForegroundColor = ConsoleColor.Gray;
                             Console.WriteLine();
                         }
                         else
@@ -59,6 +61,9 @@ class Program
                             if (checkValid)
                             {
                                 products.Add(prodName);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("Product has been added.");
+                                Console.ForegroundColor = ConsoleColor.Gray;
                             }
                         }
                     }

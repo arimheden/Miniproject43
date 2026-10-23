@@ -43,14 +43,18 @@ namespace Miniproject43
         {
             if (String.IsNullOrEmpty(inputToValidate))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Input cannot be empty");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine();
                 return false;
             }
 
             if (!inputToValidate.Contains('-'))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Product must contain a dash (-)");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine();
                 return false;
             }
@@ -59,7 +63,9 @@ namespace Miniproject43
             string[] parts = inputToValidate.Split('-');
             if (!Regex.IsMatch(parts[0], @"^[A-Z]+\z"))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The left side must contain letters only.");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine();
                 return false;
             }
@@ -73,14 +79,18 @@ namespace Miniproject43
                 else if (productNumber > 500) outOfRange = true;
                 if (outOfRange)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("The number part must be between 200 and 500");
+                    Console.ForegroundColor= ConsoleColor.Gray;
                     Console.WriteLine();
                     return false;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The right side must contain numbers only.");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine();
                 return false;
             }
