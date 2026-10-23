@@ -95,11 +95,27 @@ class Program
 
                 // Delete product from list
                 case "4":
-                    Console.WriteLine("Deleting products");
+                    Console.WriteLine();
+
+                    // Request user input
+                    string deleteString = prodList.deleteInput();
+
+                    // Validate user input
+                    if (prodList.validateInput(deleteString))
+                    {
+                        // Remove product from list
+                        products.RemoveAll(x => x ==  deleteString);
+                    }
+                    break;
+
+                // Show statistics
+                case "5":
+                    Console.WriteLine("Statistics:");
+                    prodList.productStatistics(products);
                     break;
 
                 // Exit program
-                case "5":
+                case "6":
                     Environment.Exit(0);
                     break;
             }

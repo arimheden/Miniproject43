@@ -29,6 +29,15 @@ namespace Miniproject43
             return userInput;
         }
 
+        // Request user input for product removal
+        public String deleteInput()
+        {
+            Console.Write("Enter product to delete: ");
+            string userInput = Console.ReadLine();
+            userInput = userInput.Trim().ToUpper();
+            return userInput;
+        }
+
         // Validate user input for product name
         public bool validateInput(string inputToValidate)
         {
@@ -78,6 +87,32 @@ namespace Miniproject43
             return true;
         }
 
+        // Show statistics
+        public void productStatistics(List<string> productList)
+        {
+            int productCount = productList.Count;
+            Console.WriteLine("- Total Products: "+productCount);
+
+            int[] prodNumbers = new int[productCount];
+
+            int i = 0;
+            int sumNumbers = 0;
+            productList.ForEach(delegate (string thisProduct)
+            {
+                string[] parts = thisProduct.Split('-');
+                sumNumbers += int.Parse(parts[1]);
+                prodNumbers[i] = int.Parse(parts[1]);
+                i++;
+            });
+            Console.WriteLine("- Lowest Number: " + prodNumbers[0]);
+            Console.WriteLine("- Highest Number: "+ prodNumbers[productCount-1]);
+            int average = 0;
+            average = sumNumbers / productCount;
+            Console.WriteLine("- Average: "+average);
+
+            
+        }
+
         // Display menu and wait for key press
         public string productListMenu()
         {
@@ -86,7 +121,8 @@ namespace Miniproject43
             Console.WriteLine("2. View Products");
             Console.WriteLine("3. Search Product");
             Console.WriteLine("4. Delete Product");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("5. Statistics");
+            Console.WriteLine("6. Exit");
             Console.WriteLine();
 
             ConsoleKeyInfo keypressed;
@@ -96,7 +132,7 @@ namespace Miniproject43
                 keypressed = Console.ReadKey(true);
                 numKey = keypressed.Key.ToString().Trim('D');
 
-            } while (!Regex.IsMatch(numKey, @"^[1-5]+\z"));
+            } while (!Regex.IsMatch(numKey, @"^[1-6]+\z"));
             return numKey;
         }
     }
