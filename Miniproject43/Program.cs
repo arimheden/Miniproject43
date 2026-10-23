@@ -2,6 +2,8 @@
 using ProductList;
 using System.Text.RegularExpressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 class Program
 {
@@ -114,8 +116,12 @@ class Program
                     prodList.productStatistics(products);
                     break;
 
-                // Exit program
+                // Save product list and exit program
                 case "6":
+                    StreamWriter sw = new StreamWriter("products.json");
+                    var jsonProductList = JsonSerializer.Serialize(products);
+                    sw.Write(jsonProductList.ToString());
+                    sw.Close();
                     Environment.Exit(0);
                     break;
             }
